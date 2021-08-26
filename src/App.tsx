@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import { Principal } from './dtos/principal';
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {NavbarComponent} from './components/NavbarComponent';
+import LoginComponent from "./components/LoginComponent";
+import HomeComponent from "./components/HomeComponent";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -17,7 +19,8 @@ function App() {
       <Router>
         <NavbarComponent currentUser={authUser} setCurrentUser={setAuthUser}/>
         <Switch>
-          
+            <Route exact path="/" render={() => <HomeComponent currentUser={authUser} /> } />
+            <Route path="/login" render={() => <LoginComponent currentUser={authUser} setCurrentUser={setAuthUser} /> } />
         </Switch>
       </Router>
     </>
