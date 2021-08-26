@@ -1,8 +1,9 @@
-import {AppBar, List, ListItem, ListItemText, Toolbar, Typography} from "@material-ui/core";
-import { Link } from `react-router-dom`;
+import { AppBar, List, ListItem, ListItemText, Toolbar, Typography } from "@material-ui/core";
+import { Link } from 'react-router-dom';
+import { Principal } from '../dtos/principal';
 
 interface INavbarProps {
-    currentUser: Principal | undefined), 
+    currentUser: Principal | undefined, 
     setCurrentUser: (nextUser: Principal | undefined) => void
 }
 
