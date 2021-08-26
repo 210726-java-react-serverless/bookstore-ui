@@ -40,6 +40,12 @@ function LoginComponent(props: ILoginProps) {
     }
 
     let login = async () => {
+
+        if (!username || !password) {
+            setErrorMessage('You need to provide both a username and a password');
+            return;
+        }
+
         try {
             let principal = await authenticate({username, password});
             props.setCurrentUser(principal);

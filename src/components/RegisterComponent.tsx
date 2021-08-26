@@ -41,7 +41,24 @@ function RegisterComponent(props: IRegisterProps) {
         setFormData({...formData, [name]: value});
     }
 
+    let isFormValid = () => {
+        for (let field in formData) {
+            // TODO: Make TypeScript behave.
+            //@ts-ignore
+            if (!formData[field]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     let register = async () => {
+
+        if (!isFormValid()) {
+            setErrorMessage('You need to complete the registration form!');
+            return;
+        }
+
         try {
             await registerNewUser(formData);
             history.push('/login');
@@ -54,7 +71,7 @@ function RegisterComponent(props: IRegisterProps) {
 
         props.currentUser ? <Redirect to="/dashboard"/> :
 
-            <div id="login-component" className={classes.registerContainer}>
+            <div id="register-component" className={classes.registerContainer}>
                 <Typography align="center" variant="h4">Register for a Bookstore Account!</Typography>
 
                 <FormControl margin="normal" fullWidth>
