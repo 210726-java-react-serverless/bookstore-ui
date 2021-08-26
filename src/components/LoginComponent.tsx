@@ -1,7 +1,8 @@
 import {useState} from "react";
-import { authenticate } from "./remote/auth-service";
-import { Principal } from "./dtos/principal";
-import {Redirect} from "jsx-runtime";
+import { authenticate } from "../remote/auth-service";
+import { Principal } from "../dtos/principal";
+import errMessageComp from "./ErrorMessageComponent";
+import {Redirect} from "react-router-dom";
 
 interface ILoginProps {
     currentUser: Principal | undefined,
@@ -49,7 +50,7 @@ function LoginComponent(props: ILoginProps) {
                 <br/><br/>
                 <button id="login-btn" onClick={login}>Login</button>
                 <br/><br/>
-                { errorMessage ? <ErrorMessageComponent errorMessage={errorMessage}/> : <></> }
+                {/* { errorMessage ? <ErrorMessageComponent errorMessage={errorMessage}/> : <></> } */}
             </div>
 
 
