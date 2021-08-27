@@ -27,27 +27,27 @@ function LoginComponent(props: ILoginProps) {
 
     const classes = useStyles();
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [formData, setFormData] = useState({
+        username: '',
+        password: ''
+    });
     const [errorMessage, setErrorMessage] = useState('');
 
-    let updateUsername = (e: any) => {
-        setUsername(e.currentTarget.value);
-    }
-
-    let updatePassword = (e: any) => {
-        setPassword(e.currentTarget.value);
+    let handleChange = (e: any) => {
+        console.log(e.target)
+        const { name, value } = e.target;
+        setFormData({...formData, [name]: value});
     }
 
     let login = async () => {
 
-        if (!username || !password) {
+        if (!formData.username || !formData.password) {
             setErrorMessage('You need to provide both a username and a password');
             return;
         }
 
         try {
-            let principal = await authenticate({username, password});
+            let principal = await authenticate({username: formData.username, password: formData.password});
             props.setCurrentUser(principal);
         } catch (e) {
             setErrorMessage(e.message);
@@ -65,8 +65,9 @@ function LoginComponent(props: ILoginProps) {
             <FormControl margin="normal" fullWidth>
                 <InputLabel htmlFor="username">Username</InputLabel>
                 <Input
-                    onChange={updateUsername}
+                    onChange={handleChange}
                     id="username"
+                    name="username"
                     type="text"
                     placeholder="Enter your username"
                 />
@@ -75,8 +76,9 @@ function LoginComponent(props: ILoginProps) {
             <FormControl margin="normal" fullWidth>
                 <InputLabel htmlFor="password">Password</InputLabel>
                 <Input
-                    onChange={updatePassword}
+                    onChange={handleChange}
                     id="password"
+                    name="password"
                     type="password"
                     placeholder="Enter your password"
                 />
