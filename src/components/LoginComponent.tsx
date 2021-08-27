@@ -34,7 +34,6 @@ function LoginComponent(props: ILoginProps) {
     const [errorMessage, setErrorMessage] = useState('');
 
     let handleChange = (e: any) => {
-        console.log(e.target)
         const { name, value } = e.target;
         setFormData({...formData, [name]: value});
     }
