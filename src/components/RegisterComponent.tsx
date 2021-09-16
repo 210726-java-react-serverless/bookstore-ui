@@ -5,7 +5,7 @@ import {Button, FormControl, Input, InputLabel, makeStyles, Typography} from "@m
 
 import ErrorMessageComponent from "./ErrorMessageComponent";
 import {Principal} from "../dtos/principal";
-import {registerNewUser} from "../remote/user-service";
+import {registerUserAccount} from "../remote/auth-service";
 
 interface IRegisterProps {
     currentUser: Principal | undefined
@@ -60,8 +60,8 @@ function RegisterComponent(props: IRegisterProps) {
         }
 
         try {
-            await registerNewUser(formData);
-            history.push('/login');
+            await registerUserAccount(formData);
+            history.push('/confirmation');
         } catch (e) {
             setErrorMessage(e.message);
         }

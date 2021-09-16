@@ -8,6 +8,15 @@ import LoginComponent from "./components/LoginComponent";
 
 import NavbarComponent from "./components/NavbarComponent";
 import RegisterComponent from "./components/RegisterComponent";
+import {ConfirmSignupComponent} from "./components/ConfirmSignupComponent";
+import {Amplify} from "aws-amplify";
+import {COGNITO} from "./config/aws";
+
+Amplify.configure({
+    aws_cognito_region: COGNITO.REGION,
+    aws_user_pools_id: COGNITO.USER_POOL_ID,
+    aws_user_pools_web_client_id: COGNITO.APP_CLIENT_ID
+})
 
 function App() {
 
@@ -20,6 +29,7 @@ function App() {
             <Route exact path="/dashboard" render={() => <DashboardComponent currentUser={currentUser} /> } />
             <Route path="/login" render={() => <LoginComponent currentUser={currentUser} setCurrentUser={setCurrentUser}/> } />
             <Route path="/register" render={() => <RegisterComponent currentUser={currentUser} /> } />
+            <Route path="/confirmation" render={() => <ConfirmSignupComponent /> } />
         </Switch>
       </BrowserRouter>
 );
